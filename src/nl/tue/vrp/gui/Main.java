@@ -64,13 +64,13 @@ public class Main {
                 try {
                     InputStream inputStream = Main.class.getClassLoader()
                             .getResourceAsStream(filePath);
-                    if (algoName.equals("Custom")) {
-                        defaultAlgoMap.put(algoGroup, new BufferedReader(new InputStreamReader(inputStream))
-                                .lines().collect(Collectors.joining("\n")));
-                    } else {
+//                    if (algoName.startsWith("Custom")) {
+//                        defaultAlgoMap.put(algoGroup, new BufferedReader(new InputStreamReader(inputStream))
+//                                .lines().collect(Collectors.joining("\n")));
+//                    } else {
                         algoContentMap.put(algoName, new BufferedReader(new InputStreamReader(inputStream))
                                 .lines().collect(Collectors.joining("\n")));
-                    }
+//                    }
                 } catch (Exception e) {
                     System.out.printf("file '%s' not found, err: %s \n", filePath, e.getMessage());
                 }
@@ -84,7 +84,7 @@ public class Main {
         for (AlgorithmConfig algorithmConfig : guiConfig.getAlgorithmConfigs()) {
             Map<String,String> algoContentMap = algoMap.get(algorithmConfig.getAlgorithm());
 
-            CodeInput input = new CodeInput(algorithmConfig.getName(), algoContentMap, defaultAlgoMap.get(algorithmConfig.getAlgorithm()));
+            CodeInput input = new CodeInput(algorithmConfig.getName(), algoContentMap);
             codeInputMap.put(algorithmConfig.getKey(), input);
             input.getPanel().setAlignmentX(Component.LEFT_ALIGNMENT);
             p3.add(algorithmConfig.getName(), input.getPanel());

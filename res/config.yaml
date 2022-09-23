@@ -3,18 +3,18 @@ algorithmSource:
       NearestHammingSatellite: NearestHammingSatellite.java.temp
       NearestSatellite: NearestSatellite.java.temp
       RandomSatellite: RandomSatellite.java.temp
-      Custom: CustomSatellite.java.temp
+      CustomSatellite: CustomSatellite.java.temp
   SelectVehicle:
       EarliestBiggestVehicle: EarliestBiggestVehicle.java.temp
       RandomVehicle: RandomVehicle.java.temp
-      Custom: CustomVehicle.java.temp
+      CustomVehicle: CustomVehicle.java.temp
   PackageSearch:
       NearestPackage: NearestPackage.java.temp
       RandomPackage: RandomPackage.java.temp
-      Custom: CustomPackage.java.temp
+      CustomPackage: CustomPackage.java.temp
   PackageNodeAvailability:
       SimpleAvailability: SimpleAvailability.java.temp
-      Custom: CustomAvailability.java.temp
+      CustomAvailability: CustomAvailability.java.temp
 algorithmConfigs:
   - name: "Customer Package Assignment Algorithm"
     key: CustomerPackageAssignmentAlgorithm

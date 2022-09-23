@@ -14,7 +14,7 @@ public class CodeInput {
     private final List<JRadioButton> radioButtonList;
     private final ButtonGroup algoOptionsGroup;
     private final JTextArea textArea;
-    public CodeInput(String name, Map<String, String> optionsConfig, String defaultTemplate) {
+    public CodeInput(String name, Map<String, String> optionsConfig) {
         this.name = name;
 
         panel = new JPanel();
@@ -31,7 +31,12 @@ public class CodeInput {
 
         radioButtonList = new ArrayList<>();
         boolean first = true;
+        String customKey = "";
         for (var entry: optionsConfig.entrySet()) {
+            if (entry.getKey().startsWith("Custom")) {
+                customKey = entry.getKey();
+                continue;
+            }
             JRadioButton option = new JRadioButton(entry.getKey());
             option.setActionCommand(entry.getKey());
             option.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -51,17 +56,20 @@ public class CodeInput {
                 textArea.setBackground(new Color(240, 240, 240));
             });
         }
-        JRadioButton customOption = new JRadioButton("Custom");
-        customOption.setActionCommand("Custom");
-        customOption.setAlignmentX(Component.LEFT_ALIGNMENT);
-        radioButtonList.add(customOption);
-        algoOptionsGroup.add(customOption);
-        customOption.addActionListener(e -> {
-            textArea.setText(defaultTemplate);
-            textArea.setEditable(true);
-            textArea.setBackground(Color.WHITE);
-        });
-        panel.add(customOption);
+        if (customKey != "") {
+            String customText = optionsConfig.get(customKey);
+            JRadioButton customOption = new JRadioButton("Custom");
+            customOption.setActionCommand(customKey);
+            customOption.setAlignmentX(Component.LEFT_ALIGNMENT);
+            radioButtonList.add(customOption);
+            algoOptionsGroup.add(customOption);
+            customOption.addActionListener(e -> {
+                textArea.setText(customText);
+                textArea.setEditable(true);
+                textArea.setBackground(Color.WHITE);
+            });
+            panel.add(customOption);
+        }
 
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setAlignmentX(Component.LEFT_ALIGNMENT);
